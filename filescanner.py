@@ -1,6 +1,4 @@
 import os
-import sys
-from sys import path
 
 
 class FileScanner():
@@ -8,20 +6,11 @@ class FileScanner():
         pass
 
     def scan_directory(self, path):
+        filepaths = []
         for folder, subs, files in os.walk(path):
-            #with open(os.path.join(folder, 'python-outfile.txt'), 'w') as dest:
-                for filename in files:
-                    with open(os.path.join(folder, filename), 'r') as src:
-                        print(filename)
-                        #dest.write(src.read())
-                return files
+            for filename in files:
+                filepaths.append(os.path.join(folder, filename))
+        return filepaths
 
     def get_all_files(self, path):
         pass
-
-
-
-
-
-
-
