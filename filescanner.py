@@ -6,7 +6,7 @@ class FileScanner():
         pass
 
     EXCLUDE_DIRS = {'.git'}
-    EXCLUDE_FILES = {'baseline.json'}
+    EXCLUDE_FILES = {'baseline.json', 'fim.log'}
 
     def scan_directory(self, path):
         filepaths = []
