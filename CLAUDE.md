@@ -10,6 +10,12 @@ python fim.py
 
 Prompts for a directory path at runtime. No build step or package manager required — stdlib only.
 
+## Running tests
+
+```bash
+python -m unittest test_fim -v
+```
+
 ## Architecture
 
 A Python file integrity monitor (FIM) that detects unauthorized changes to files by comparing SHA-256 hashes against a saved baseline.
