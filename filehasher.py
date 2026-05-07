@@ -3,40 +3,28 @@ import hashlib
 class FileHasher():
     def __init__(self):
         pass
-    def  calculate_hash(self,filepath):
-        try:
-            content = self.load_file(filepath)
-            hash_object = hashlib.sha256(content.encode())
-            hex_dig = hash_object.hexdigest()
+    def calculate_hash(self, filepath):
+        content = self.load_file(filepath)
+        if content is None:
+            return None
+        hex_dig = hashlib.sha256(content).hexdigest()
+        print(f"Hashed String: {hex_dig}")
+        return hex_dig
 
-            print(f"Hashed String: {hex_dig}")
-            return hex_dig
-        except AttributeError:
-            print("The specified path is a directory.")
+    def verify_hash(self, filepath, hash):
+        content = self.load_file(filepath)
+        if content is None:
+            return False
+        hex_dig = hashlib.sha256(content).hexdigest()
+        return hash == hex_dig
 
-    def verify_hash(self,filepath,hash):
-
-        try:
-            content = self.load_file(filepath)
-            hash_object = hashlib.sha256(content.encode())
-            hex_dig = hash_object.hexdigest()
-            print(f"Hashed String: {hex_dig}")
-            if (hash == hex_dig):
-                return True
-            else:
-                return False
-        except AttributeError:
-            print("The specified path is a directory.")
-
-
-        return False
-
-    def load_file(self,filepath):
+    def load_file(self, filepath):
         try:
             with open(filepath, 'rb') as file:
-                content = file.read()
+                return file.read()
         except IsADirectoryError:
-               print("The specified path is a directory.")
+            print("The specified path is a directory.")
+            return None
 
     def compare(self,baseline, current_scan):
         pass
