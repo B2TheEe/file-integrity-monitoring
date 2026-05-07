@@ -7,9 +7,7 @@ class FileHasher():
         content = self.load_file(filepath)
         if content is None:
             return None
-        hex_dig = hashlib.sha256(content).hexdigest()
-        print(f"Hashed String: {hex_dig}")
-        return hex_dig
+        return hashlib.sha256(content).hexdigest()
 
     def verify_hash(self, filepath, hash):
         content = self.load_file(filepath)
